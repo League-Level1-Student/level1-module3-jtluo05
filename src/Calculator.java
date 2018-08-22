@@ -12,31 +12,31 @@ public class Calculator implements ActionListener {
 	private JTextField tf2 = new JTextField(10);
 	private JFrame frame = new JFrame();
 	private JPanel panel = new JPanel();
-	private JLabel label = new JLabel();
-	private JButton button1 = new JButton();
-	private JButton button2 = new JButton();
-	private JButton button3 = new JButton();
-	private JButton button4 = new JButton();
+	private JLabel label = new JLabel("0");
+	private JButton add = new JButton();
+	private JButton sub = new JButton();
+	private JButton mul = new JButton();
+	private JButton div = new JButton();
 
 	void createUI() {
 		frame.setVisible(true);
 		frame.setSize(300, 300);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		panel.add(tf1);
 		panel.add(tf2);
-		tf1.addActionListener(this);
-		tf2.addActionListener(this);
-		panel.add(button1);
-		panel.add(button2);
-		panel.add(button3);
-		panel.add(button4);
-button1.addActionListener(this);
-button2.addActionListener(this);
-button3.addActionListener(this);
-button4.addActionListener(this);
-		button1.setText("add");
-		button2.setText("sub");
-		button3.setText("mul");
-		button4.setText("div");
+		panel.add(add);
+		panel.add(sub);
+		panel.add(mul);
+		panel.add(div);
+
+		add.addActionListener(this);
+		sub.addActionListener(this);
+		mul.addActionListener(this);
+		div.addActionListener(this);
+		add.setText("add");
+		sub.setText("sub");
+		mul.setText("mul");
+		div.setText("div");
 		panel.add(label);
 		frame.add(panel);
 		frame.pack();
@@ -44,29 +44,31 @@ button4.addActionListener(this);
 	}
 
 	public String add(String input1, String input2) {
-		int int1 = Integer.parseInt(input1);
-		int int2 = Integer.parseInt(input2);
-		return input1 + input2;
+		double int1 = Double.parseDouble(input1);
+		double int2 = Double.parseDouble(input2);
+		double answer=int1 + int2;
+		System.out.println(answer);
+		return String.valueOf(answer);
 	}
 
 	public String sub(String input1, String input2) {
 
-		int int1 = Integer.parseInt(input1);
-		int int2 = Integer.parseInt(input2);
+		double int1 = Double.parseDouble(input1);
+		double int2 = Double.parseDouble(input2);
 
 		return int1 - int2 + "";
 	}
 
 	public String mul(String input1, String input2) {
-		int int1 = Integer.parseInt(input1);
-		int int2 = Integer.parseInt(input2);
+		double int1 = Double.parseDouble(input1);
+		double int2 = Double.parseDouble(input2);
 
 		return int1 * int2 + "";
 	}
 
 	public String div(String input1, String input2) {
-		int int1 = Integer.parseInt(input1);
-		int int2 = Integer.parseInt(input2);
+		double int1 = Double.parseDouble(input1);
+		double int2 = Double.parseDouble(input2);
 
 		return int1 / int2 + "";
 	}
@@ -74,7 +76,20 @@ button4.addActionListener(this);
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
+		String answer = "";
+		if (e.getSource() == add) {
+			answer = add(tf1.getText(), tf2.getText());
+		} else if (e.getSource() == sub) {
+			answer = sub(tf1.getText(), tf2.getText());
+		} else if (e.getSource() == mul) {
+			answer = mul(tf1.getText(), tf2.getText());
+		} else {
+			answer = div(tf1.getText(), tf2.getText());
+
+		}
+		label.setText(answer);
+		frame.pack();
 	}
 
 }
