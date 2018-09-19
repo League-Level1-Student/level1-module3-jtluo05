@@ -33,7 +33,7 @@ public class NetflixQueue {
 	}
 
 	public void printMovies() {
-		System.out.println("Your Netflix queue contains: ");
+		System.out.println("Your Netflix queue contains (from best movie to worst): ");
 		for (Movie movie : movies) {
 			System.out.println(movie);
 		}
